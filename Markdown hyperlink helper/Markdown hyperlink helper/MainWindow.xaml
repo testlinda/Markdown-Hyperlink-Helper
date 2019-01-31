@@ -1,0 +1,85 @@
+﻿<Window x:Class="Markdown_hyperlink_helper.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Markdown_hyperlink_helper"
+        mc:Ignorable="d"
+        Height="400" Width="400"
+        ResizeMode="CanMinimize"
+        Icon="Resource/icon.ico">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!-- prefix -->
+        <Grid Grid.Row="0">
+            <CheckBox Name="cb_prefix" 
+                      VerticalAlignment="Center" VerticalContentAlignment="Center"
+                      Checked="cb_prefix_CheckChanged" Unchecked="cb_prefix_CheckChanged">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Add prefix"/>
+                    <TextBox Name="tb_prefix" Width="100" VerticalContentAlignment="Center"/>
+                </StackPanel>
+            </CheckBox>
+        </Grid>
+        <!-- content -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="3" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="3" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="3" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Topic"/>
+                <Label Grid.Row="2" Grid.Column="0" Content="Link"/>
+                <Label Grid.Row="4" Grid.Column="0" Content="Video link"/>
+                <Label Grid.Row="6" Grid.Column="0" Content="Gallery link"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Name="tb_topic"
+                         VerticalContentAlignment="Center"
+                         ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}"
+                         PreviewMouseDown="TextBox_PreviewMouseDown"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="tb_link"
+                         VerticalContentAlignment="Center"
+                         ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}"
+                         PreviewMouseDown="TextBox_PreviewMouseDown"/>
+                <TextBox Grid.Row="4" Grid.Column="1" Name="tb_vlink"
+                         VerticalContentAlignment="Center"
+                         ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}"
+                         PreviewMouseDown="TextBox_PreviewMouseDown"/>
+                <TextBox Grid.Row="6" Grid.Column="1" Name="tb_glink"
+                         VerticalContentAlignment="Center"
+                         ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}"
+                         PreviewMouseDown="TextBox_PreviewMouseDown"/>
+            </Grid>
+            <Button Grid.Column="2" Name="btn_clearall" Content="Clear all" Background="CadetBlue" Click="btn_clearall_Click"/>
+        </Grid>
+        <!-- output -->
+        <Grid Grid.Row="4" ToolTip="Click me to copy texts to the clipboard!">
+            <Rectangle Fill="Aquamarine"/>
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Name="text_output" TextWrapping="WrapWithOverflow" Margin="10"
+                       
+                       PreviewMouseDown="text_output_PreviewMouseDown"/>
+            </Grid>
+            
+        </Grid>
+    </Grid>
+</Window>
