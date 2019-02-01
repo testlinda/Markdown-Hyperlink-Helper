@@ -92,7 +92,7 @@ namespace Markdown_hyperlink_helper
 
         private string GetVideoLink()
         {
-            return " " + ((tb_vlink.Text.Length > 0) ? ("([video](" + tb_vlink.Text + "))") : "");
+            return " " + ((tb_vlink.Text.Length > 0) ? ("([video](" + tb_vlink.Text.Replace("_1000k.mp4", "_2250k.mp4") + "))") : "");
         }
 
         private string GetGalleryLink()

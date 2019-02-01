@@ -74,9 +74,8 @@
         <!-- output -->
         <Grid Grid.Row="4" ToolTip="Click me to copy texts to the clipboard!">
             <Rectangle Fill="Aquamarine"/>
-            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock Name="text_output" TextWrapping="WrapWithOverflow" Margin="10"
-                       
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">
+                <TextBlock Name="text_output" TextWrapping="Wrap"
                        PreviewMouseDown="text_output_PreviewMouseDown"/>
             </Grid>
             
