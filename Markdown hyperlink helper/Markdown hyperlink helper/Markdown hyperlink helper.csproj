@@ -96,7 +96,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resource\facebook.png" />
+    <Resource Include="Resource\instagram.png" />
+    <Resource Include="Resource\twitter.png" />
+    <Resource Include="Resource\youtube.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\icon.ico" />
   </ItemGroup>

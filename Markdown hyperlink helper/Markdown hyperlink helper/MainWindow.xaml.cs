@@ -100,6 +100,28 @@ namespace Markdown_hyperlink_helper
             return  ((tb_glink.Text.Length > 0) ? (" ([gallery](" + tb_glink.Text + "))") : "");
         }
 
-        
+        private void btn_media_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            if (btn.Name.Equals("btn_facebook"))
+            {
+                tb_topic.Text = "Facebook";
+            }
+            else if (btn.Name.Equals("btn_twitter"))
+            {
+                tb_topic.Text = "Twitter";
+            }
+            else if (btn.Name.Equals("btn_youtube"))
+            {
+                tb_topic.Text = "YouTube";
+            }
+            else
+            {
+                tb_topic.Text = "Instagram";
+            }
+
+            RefreshOutput();
+        }
     }
 }
