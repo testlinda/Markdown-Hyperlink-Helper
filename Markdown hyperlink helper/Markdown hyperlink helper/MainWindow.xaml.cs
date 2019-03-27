@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -21,6 +22,7 @@ namespace Markdown_hyperlink_helper
     public partial class MainWindow : Window
     {
         private const string _windowTitle = "Markdown Hyperlink Helper";
+        private string _notation = "";
 
         public MainWindow()
         {
@@ -49,6 +51,7 @@ namespace Markdown_hyperlink_helper
         private void text_output_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             SetClipboard(text_output.Text);
+            ToastMessage("Copied");
         }
 
         private void btn_clearall_Click(object sender, RoutedEventArgs e)
@@ -57,6 +60,9 @@ namespace Markdown_hyperlink_helper
             tb_link.Text = "";
             tb_vlink.Text = "";
             tb_glink.Text = "";
+            _notation = "";
+            SetSelectedNotation(btn_note_x);
+
             RefreshOutput();
         }
 
@@ -72,7 +78,12 @@ namespace Markdown_hyperlink_helper
 
         private void RefreshOutput()
         {
-            text_output.Text = GetPrefix() + GetTopic() + GetLink() + GetVideoLink() + GetGalleryLink();
+            text_output.Text = GetPrefix() + GetNotation() + GetTopic() + GetLink() + GetVideoLink() + GetGalleryLink();
+        }
+
+        private string GetNotation()
+        {
+            return ((_notation.Length > 0) ? ("`" + _notation + "` ") : "");
         }
 
         private string GetPrefix()
@@ -104,24 +115,80 @@ namespace Markdown_hyperlink_helper
         {
             Button btn = (Button)sender;
 
-            if (btn.Name.Equals("btn_facebook"))
+            if (btn.Name.Equals("btn_topic_facebook"))
             {
                 tb_topic.Text = "Facebook";
             }
-            else if (btn.Name.Equals("btn_twitter"))
+            else if (btn.Name.Equals("btn_topic_twitter"))
             {
                 tb_topic.Text = "Twitter";
             }
-            else if (btn.Name.Equals("btn_youtube"))
+            else if (btn.Name.Equals("btn_topic_youtube"))
             {
                 tb_topic.Text = "YouTube";
             }
-            else
+            else if (btn.Name.Equals("btn_topic_instagram"))
             {
                 tb_topic.Text = "Instagram";
             }
+            else if (btn.Name.Equals("btn_note_facebook"))
+            {
+                _notation = "Facebook";
+                SetSelectedNotation(btn);
+            }
+            else if (btn.Name.Equals("btn_note_twitter"))
+            {
+                _notation = "Twitter";
+                SetSelectedNotation(btn);
+            }
+            else if (btn.Name.Equals("btn_note_youtube"))
+            {
+                _notation = "YouTube";
+                SetSelectedNotation(btn);
+            }
+            else if (btn.Name.Equals("btn_note_instagram"))
+            {
+                _notation = "Instagram";
+                SetSelectedNotation(btn);
+            }
+            else // btn_note_x
+            {
+                _notation = "";
+                SetSelectedNotation(btn);
+            }
+
 
             RefreshOutput();
+        }
+
+        private void SetSelectedNotation(Button btn)
+        {
+            btn_note_x.Background = Brushes.Transparent;
+            btn_note_facebook.Background = Brushes.Transparent;
+            btn_note_twitter.Background = Brushes.Transparent;
+            btn_note_youtube.Background = Brushes.Transparent;
+            btn_note_instagram.Background = Brushes.Transparent;
+
+            btn.Background = Brushes.CadetBlue;
+        }
+
+
+        private void ToastMessage(string message)
+        {
+            label_message.Content = message;
+
+            Storyboard storyboard = new Storyboard();
+            TimeSpan duration = new TimeSpan(0, 0, 1);
+            DoubleAnimation animation = new DoubleAnimation();
+
+            animation.From = 1.0;
+            animation.To = 0.0;
+            animation.Duration = new Duration(duration);
+            Storyboard.SetTargetName(animation, label_message.Name);
+            Storyboard.SetTargetProperty(animation, new PropertyPath(Control.OpacityProperty));
+            storyboard.Children.Add(animation);
+
+            storyboard.Begin(this);
         }
     }
 }

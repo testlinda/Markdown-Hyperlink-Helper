@@ -43,16 +43,63 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="3" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="3" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Content="Topic"/>
-                <Label Grid.Row="2" Grid.Column="0" Content="Link"/>
-                <Label Grid.Row="4" Grid.Column="0" Content="Video link"/>
-                <Label Grid.Row="6" Grid.Column="0" Content="Gallery link"/>
+                <Label Grid.Row="0" Grid.Column="0" Content="Notation"/>
+                <Label Grid.Row="2" Grid.Column="0" Content="Topic"/>
+                <Label Grid.Row="4" Grid.Column="0" Content="Link"/>
+                <Label Grid.Row="6" Grid.Column="0" Content="Video link"/>
+                <Label Grid.Row="8" Grid.Column="0" Content="Gallery link"/>
                 <Grid Grid.Row="0" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" x:Name="btn_note_x" Width="25" 
+                            Background="CadetBlue" BorderThickness="0"
+                            Click="btn_media_Click">
+                        <StackPanel>
+                            <Image Source="/Resource/x.png" Width="20"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Column="1" x:Name="btn_note_facebook" Width="25" 
+                            Background="Transparent" BorderThickness="0"
+                            Click="btn_media_Click">
+                        <StackPanel>
+                            <Image Source="/Resource/facebook.png"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Column="2" x:Name="btn_note_twitter" Width="25" 
+                            Background="Transparent" BorderThickness="0"
+                            Click="btn_media_Click">
+                        <StackPanel>
+                            <Image Source="/Resource/twitter.png"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Column="3" x:Name="btn_note_youtube" Width="25" 
+                            Background="Transparent" BorderThickness="0"
+                            Click="btn_media_Click">
+                        <StackPanel>
+                            <Image Source="/Resource/youtube.png"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Column="4" x:Name="btn_note_instagram" Width="25" 
+                            Background="Transparent" BorderThickness="0"
+                            Click="btn_media_Click">
+                        <StackPanel>
+                            <Image Source="/Resource/instagram.png"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
@@ -64,28 +111,28 @@
                          VerticalContentAlignment="Center"
                          ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}"
                          PreviewMouseDown="TextBox_PreviewMouseDown"/>
-                    <Button Grid.Column="1" x:Name="btn_facebook" Width="25" 
+                    <Button Grid.Column="1" x:Name="btn_topic_facebook" Width="25" 
                             Background="Transparent" BorderThickness="0"
                             Click="btn_media_Click">
                         <StackPanel>
                             <Image Source="/Resource/facebook.png"/>
                         </StackPanel>
                     </Button>
-                    <Button Grid.Column="2" x:Name="btn_twitter" Width="25" 
+                    <Button Grid.Column="2" x:Name="btn_topic_twitter" Width="25" 
                             Background="Transparent" BorderThickness="0"
                             Click="btn_media_Click">
                         <StackPanel>
                             <Image Source="/Resource/twitter.png"/>
                         </StackPanel>
                     </Button>
-                    <Button Grid.Column="3" x:Name="btn_youtube" Width="25" 
+                    <Button Grid.Column="3" x:Name="btn_topic_youtube" Width="25" 
                             Background="Transparent" BorderThickness="0"
                             Click="btn_media_Click">
                         <StackPanel>
                             <Image Source="/Resource/youtube.png"/>
                         </StackPanel>
                     </Button>
-                    <Button Grid.Column="4" x:Name="btn_instagram" Width="25" 
+                    <Button Grid.Column="4" x:Name="btn_topic_instagram" Width="25" 
                             Background="Transparent" BorderThickness="0"
                             Click="btn_media_Click">
                         <StackPanel>
@@ -93,20 +140,22 @@
                         </StackPanel>
                     </Button>
                 </Grid>
-                <TextBox Grid.Row="2" Grid.Column="1" Name="tb_link"
+                <TextBox Grid.Row="4" Grid.Column="1" Name="tb_link"
                          VerticalContentAlignment="Center"
                          ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}"
                          PreviewMouseDown="TextBox_PreviewMouseDown"/>
-                <TextBox Grid.Row="4" Grid.Column="1" Name="tb_vlink"
+                <TextBox Grid.Row="6" Grid.Column="1" Name="tb_vlink"
                          VerticalContentAlignment="Center"
                          ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}"
                          PreviewMouseDown="TextBox_PreviewMouseDown"/>
-                <TextBox Grid.Row="6" Grid.Column="1" Name="tb_glink"
+                <TextBox Grid.Row="8" Grid.Column="1" Name="tb_glink"
                          VerticalContentAlignment="Center"
                          ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}"
                          PreviewMouseDown="TextBox_PreviewMouseDown"/>
             </Grid>
-            <Button Grid.Column="2" Name="btn_clearall" Content="Clear all" Background="CadetBlue" Click="btn_clearall_Click"/>
+            <Button Grid.Column="2" Name="btn_clearall" Content="Clear all" 
+                    Background="CadetBlue" BorderThickness="0"
+                    Click="btn_clearall_Click"/>
         </Grid>
         <!-- output -->
         <Grid Grid.Row="4" ToolTip="Click me to copy texts to the clipboard!">
@@ -114,6 +163,8 @@
             <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">
                 <TextBlock Name="text_output" TextWrapping="Wrap"/>
             </Grid>
+            <Label Name="label_message" Foreground="Teal"
+                   FontSize="80" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Rectangle Fill="Transparent" PreviewMouseDown="text_output_PreviewMouseDown"/>
         </Grid>
     </Grid>
