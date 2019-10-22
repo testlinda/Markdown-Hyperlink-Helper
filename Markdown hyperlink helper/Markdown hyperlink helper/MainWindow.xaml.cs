@@ -103,12 +103,22 @@ namespace Markdown_hyperlink_helper
 
         private string GetVideoLink()
         {
-            return ((tb_vlink.Text.Length > 0) ? (" ([video](" + tb_vlink.Text.Replace("_1000k.mp4", "_2250k.mp4") + "))") : "");
+            return ((tb_vlink.Text.Length > 0) ? (" ([video](" + Tranfer2Mp4Link(tb_vlink.Text) + "))") : "");
         }
 
         private string GetGalleryLink()
         {
             return  ((tb_glink.Text.Length > 0) ? (" ([gallery](" + tb_glink.Text + "))") : "");
+        }
+
+        private string Tranfer2Mp4Link(string strLink)
+        {
+            strLink = strLink.Replace("realmadcomvod-vh.akamaihd.net/i", "descargapwebrealmadrid.akamaized.net");
+            strLink = strLink.Replace("_,400k,650k,1000k,1500k,2250k,.mp4.csmil/master.m3u8", "_2250k.mp4");
+            strLink = strLink.Replace("?vauto=1", "");
+            strLink = strLink.Replace("_1000k.", "_2250k.");
+
+            return strLink;
         }
 
         private void btn_media_Click(object sender, RoutedEventArgs e)
